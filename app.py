@@ -1,6 +1,7 @@
 # Initial setup
 from flask import Flask
 import json
+import requests
 
 app = Flask(__name__)
 
@@ -10,6 +11,10 @@ def index():
 	return_value = {"message":"Welcome to the Edu-Buddy API!"}
 	json_string = json.dumps(return_value)
 	return json_string
+# API page
+def api_entry(request):
+    full_url = ''.join(['http://', get_current_site(request).domain])
+    return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 # Help page
 @app.route("/help")
