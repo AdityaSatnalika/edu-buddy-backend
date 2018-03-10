@@ -14,8 +14,9 @@ def index():
 # API page
 @app.route("/api_entry")
 def api_entry(request):
-        full_url = ''.join(['http://', get_current_site(request).domain])
-        return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
+        json_string = "Anshul is great"
+        return json_string
+        #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 # Help page
 @app.route("/help")
