@@ -1,6 +1,5 @@
 # Initial setup
-from flask import Flask
-from flask import request
+from flask import Flask, request, redirect, url_for
 
 import json
 import pyrebase
@@ -24,6 +23,13 @@ def index():
 	return_value = {"message":"Welcome to the Edu-Buddy API!"}
 	json_string = json.dumps(return_value)
 	return json_string
+
+# API page
+@app.route("/api",methods = ['POST', 'GET'])
+def api():
+        json_string = "Anshul is great"+request.args.get('q')
+        return json_string
+        #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 # Help page
 @app.route("/help")
