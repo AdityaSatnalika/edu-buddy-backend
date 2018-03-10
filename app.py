@@ -15,10 +15,9 @@ def index():
 # API page
 def api_entry(request):
         full_url = ''.join(['http://', get_current_site(request).domain])
-        return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
-        return_value = {"message":"Welcome to the Edu-Buddy API!"}
-	json_string = json.dumps(return_value)
-	return json_string
+        
+        return_value = ('<pre>' + r.text + 'Anshul is great </pre>'+full_url+' get try '+request.GET['q'])
+	return return_value
 
 # Help page
 @app.route("/help")
