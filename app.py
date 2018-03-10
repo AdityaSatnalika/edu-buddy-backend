@@ -11,6 +11,7 @@ def index():
 	return_value = {"message":"Welcome to the Edu-Buddy API!"}
 	json_string = json.dumps(return_value)
 	return json_string
+
 # API page
 def api_entry(request):
     full_url = ''.join(['http://', get_current_site(request).domain])
