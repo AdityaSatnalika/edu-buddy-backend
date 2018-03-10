@@ -12,8 +12,8 @@ def index():
 	json_string = json.dumps(return_value)
 	return json_string
 # API page
-@app.route("/api_entry")
-def api_entry(request):
+@app.route("/api")
+def api():
         json_string = "Anshul is great"
         return json_string
         #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
