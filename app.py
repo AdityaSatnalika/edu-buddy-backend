@@ -14,7 +14,7 @@ def index():
 # API page
 @app.route("/api")
 def api():
-        json_string = "Anshul is great"
+        json_string = "Anshul is great"+request.GET['q']
         return json_string
         #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
