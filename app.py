@@ -12,10 +12,12 @@ def index():
 	json_string = json.dumps(return_value)
 	return json_string
 # API page
-@app.route("/api")
-def api():
-        json_string = "Anshul is great"+request.GET['q']
-        return json_string
+@app.route("/api",methods = ['POST', 'GET'])
+def api(request):
+        #json_string = "Anshul is great"
+        user = request.args.get('q')
+        return redirect(url_for('success',name = user))
+        #return json_string
         #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 # Help page
