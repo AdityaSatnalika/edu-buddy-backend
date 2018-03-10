@@ -11,16 +11,10 @@ def index():
 	return_value = {"message":"Welcome to the Edu-Buddy API!"}
 	json_string = json.dumps(return_value)
 	return json_string
-
 # API page
 def api_entry(request):
-        return_value = {"message":"Welcome to the Edu-Buddy API!"}
-	json_string = json.dumps(return_value)
-	return json_string
-        #full_url = ''.join(['http://', get_current_site(request).domain])
-        
-        #return_value = ('<pre>' + r.text + 'Anshul is great </pre>'+full_url+' get try '+request.GET['q'])
-	#return return_value
+        full_url = ''.join(['http://', get_current_site(request).domain])
+        return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 # Help page
 @app.route("/help")
