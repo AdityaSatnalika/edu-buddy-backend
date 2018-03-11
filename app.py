@@ -85,9 +85,9 @@ def queryd():
 					
 					# Add a time of one day to the calculation
 					if (after_keyword == 1):
-						now_time = datetime.now() + timedelta(days = 2)
+						now_time = datetime.now() + timedelta(days = 2) + timedelta(hours = 5) + timedelta(minutes = 30)
 					else:
-						now_time = datetime.now() + timedelta(days = 1)
+						now_time = datetime.now() + timedelta(days = 1) + timedelta(hours = 5) + timedelta(minutes = 30)
 						
 					tomorrow_time = now_time.replace(hour=0, minute=0, second=0, microsecond=0)
 					milliseconds = str(int((tomorrow_time - epoch).total_seconds() * 1000))
