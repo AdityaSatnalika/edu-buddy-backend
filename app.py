@@ -41,7 +41,7 @@ def index():
 @app.route("/query",methods = ["GET"])
 
 def queryd():
-	query_string = request.args.get('query')
+	query_string = request.args.get('query').lower()
 	token_words = nltk.word_tokenize(query_string)
 	
 	# Keeping only alphabetical words (removing punctuations)
