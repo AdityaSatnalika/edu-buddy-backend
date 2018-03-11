@@ -22,5 +22,11 @@
 		"intent": "addEvent",
 		"data_1": "now",
 		"data_2": "0"
+	},
+	"error": {
+		"intent": "foundError",
+		"data_1": "There has been an error processsing this query.",
+		"data_2": "0"
+		
 	}
 }

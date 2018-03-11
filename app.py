@@ -111,9 +111,7 @@ def queryd():
 		return json.dumps(response)
 		
 	else:
-		return_value = {"message":"There has been an error processsing the query."}
-		json_string = json.dumps(return_value)
-		return json_string
+		return json.dumps(data_repository["error"])
 
 # Courses Query page
 @app.route("/courses",methods = ["GET"])
@@ -174,9 +172,7 @@ def authenticate_user():
 		return json_string	
 
 	except:
-		return_value = {"message":"The user could not be succesfully authenticated."}
-		json_string = json.dumps(return_value)
-		return json_string
+		return json.dumps(data_repository["error"])
 
 # User details page
 @app.route("/user_details", methods = ["GET"])
@@ -190,10 +186,7 @@ def user_details():
 		return json_string
 
 	except:
-		return_value = {"message":"The user details could not be retrieved."}
-		json_string = json.dumps(return_value)
-
-		return json_string
+		return json.dumps(data_repository["error"])
 
 # Error page
 @app.errorhandler(404)
