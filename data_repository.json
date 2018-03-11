@@ -19,6 +19,8 @@
 		}
 	},
 	"add": {
-		"intent": "addEvent"
+		"intent": "addEvent",
+		"type": "now",
+		"time": ""
 	}
 }
