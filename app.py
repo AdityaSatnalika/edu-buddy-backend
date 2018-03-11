@@ -70,8 +70,8 @@ def api():
 
 def data():
         
-
-        users = db.child("users").get()
+        user_token = request.args.get('user_token')
+        users = db.child("users").get(user_token)
         return "Anshul is Great"
         values  = users.val()
 
