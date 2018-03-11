@@ -32,6 +32,22 @@ def index():
 		json_string = json.dumps(return_value)
 		return json_string
 
+
+
+
+# API page
+
+@app.route("/api",methods = ['POST', 'GET'])
+
+def api():
+
+    json_string = "Anshul is great"+request.args.get('q')
+
+    return json_string
+
+    #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
+
+=======
 # Query page
 @app.route("/query",methods = ["GET"])
 
