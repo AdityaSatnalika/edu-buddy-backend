@@ -72,7 +72,9 @@ def data():
 
         users = db.child("users").get()
         
-        return users
+        values  = users.val()
+
+        return values
 
         #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
