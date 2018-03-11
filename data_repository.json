@@ -21,6 +21,6 @@
 	"add": {
 		"intent": "addEvent",
 		"type": "now",
-		"time": ""
+		"time": "0"
 	}
 }
