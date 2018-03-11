@@ -115,7 +115,7 @@ def queryd():
 		json_string = json.dumps(return_value)
 		return json_string
 
-# Query Courses page
+# Courses Query page
 @app.route("/courses",methods = ["GET"])
 
 def courses():
@@ -128,8 +128,14 @@ def courses():
 	
 	for i in range(10):
 		list_data.append(str(data[i])[73:-5])
-	
-	courses = {"courses": list_data}
+	list_url = []
+ 
+        for link in soup.findAll('a', class_="rc-OfferingCard nostyle",limit=10):
+                list_url.append(link.get('href'))
+
+    
+
+	courses = {"courses": list_data,"url":list_url}
 	return json.dumps(courses)
 
 # Database page
