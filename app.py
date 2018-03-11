@@ -83,9 +83,9 @@ def queryd():
 	stemmed_words.sort()
 	data = json.load(open('strings.json'))
 	if("show" in stemmed_word):
-                return json.dumps(data['show'])
-        else
-                return json.dumps(data)
+		return json.dumps(data['show'])
+	else:
+		return json.dumps(data)
 	
 # Database page
 @app.route("/data",methods = ["GET"])
