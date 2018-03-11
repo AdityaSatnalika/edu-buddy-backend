@@ -11,6 +11,7 @@ import requests
 import time
 from datetime import datetime, timedelta
 from autocorrect import spell
+import bs4 as BeautifulSoup
 
 # Flask object creation
 app = Flask(__name__)
@@ -114,26 +115,21 @@ def queryd():
 		json_string = json.dumps(return_value)
 		return json_string
 
-# Courses Query page
-@app.route("/queryc",methods = ["GET"])
+# Courses Courses page
+@app.route("/courses",methods = ["GET"])
 
-def queryc():
+def courses():
 	query_string = request.args.get('query')
 	page = requests.get("https://www.coursera.org/courses?languages=en&query="+query_string)
-    page
     soup = BeautifulSoup(page.content, 'html.parser')
     
     data = soup.find_all('h2',class_="color-primary-text headline-1-text flex-1",limit=10)
     l = []
     for i in range(10):
         l.append(str(data[i])[73:-5])
-    print(l)
     json_string = json.dumps(l)
     return json_string
 
-	
-    
-    
 # Database page
 @app.route("/data",methods = ["GET"])
 
