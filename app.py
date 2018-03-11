@@ -65,28 +65,59 @@ def queryd():
 	stemmed_words.sort()
 	data_repository = json.load(open('data_repository.json'))
 	
-	if(("show" in stemmed_words or "what" in stemmed_words) and "schedul" in stemmed_words):
+	# Decision making for viewing the schedule
+	if(("show" in stemmed_words or "what" in cleaned_words or "view" in cleaned_words or "enlist" in cleaned_words) and "schedul" in stemmed_words):
+		# Checking if the 'after' keyword is present
+		if ("after" in token_words):
+			after_keyword = 1
+		
 		for key_parameter in stemmed_words:
 			# The time needs to be adjusted for the UTC standard
+			# Time to be sent in case of no specific day mentioned
+			milliseconds = str(int(round(time.time() * 1000) + 5.5 * 3600 * 1000))
+			
 			try:
+				# Get time for 'now' or 'today'
 				if(key_parameter == "now" or key_parameter == "today"):
 					milliseconds = str(int(round(time.time() * 1000) + 5.5 * 3600 * 1000))
+
+					data_repository["show"]["schedul"][key_parameter]["time"] = milliseconds
+					return json.dumps(data_repository["show"]["schedul"][key_parameter])
 				
-				# The time is adjusted to get the time for the next day's 12:00 AM
+				# Get time for 'tomorrow'
 				elif(key_parameter == "tomorrow"):
+					# The time is adjusted to get the time for the next day's 12:00 AM
 					epoch = datetime.utcfromtimestamp(0)
-					now_time = datetime.now() + timedelta(days=1)
+					
+					if (after_keyword == 1):
+						now_time = datetime.now() + timedelta(days=2)
+					else:
+						now_time = datetime.now() + timedelta(days=1)
+					
 					tomorrow_time = now_time.replace(hour=0, minute=0, second=0, microsecond=0)
 					milliseconds = str(int((tomorrow_time - epoch).total_seconds() * 1000))
 					
-				data_repository["show"]["schedul"][key_parameter]["time"] = milliseconds
-				return json.dumps(data_repository["show"]["schedul"][key_parameter])
+					data_repository["show"]["schedul"][key_parameter]["time"] = milliseconds
+					return json.dumps(data_repository["show"]["schedul"][key_parameter])
 			except:
 				fail = 1
-		else:
-			return_value = {"message":"There has been an error processsing the query."}
-			json_string = json.dumps(return_value)
-			return json_string
+		
+		data_repository["show"]["schedul"]["today"]["time"] = milliseconds
+		return json.dumps(data_repository["show"]["schedul"]["today"])
+		
+	elif("add" in stemmed_words and ("reminder" or "event" in stemmed_words)):
+		return json.dumps(data_repository["add"])
+		
+	elif("interest" in stemmed_words or "news" in stemmed_words):
+		url = ('https://newsapi.org/v2/top-headlines?country=in&apiKey=dfc5903247a14791b9db4a0dd940f0cf')
+		response = requests.get(url)
+		response = response.json()
+		return json.dumps(response)
+		
+	else:
+		return_value = {"message":"There has been an error processsing the query."}
+		json_string = json.dumps(return_value)
+		return json_string
 
 # Database page
 @app.route("/data",methods = ["GET"])
