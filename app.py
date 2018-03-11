@@ -49,26 +49,6 @@ def api():
 # Query page
 @app.route("/query",methods = ["GET"])
 
-def query():
-	query_string = request.args.get('query')
-	token_words = nltk.word_tokenize(query_string)
-	
-	# Keeping only alphabetical words (removing punctuations)
-	cleaned_words = [word for word in token_words if word.isalpha()]
-	
-	# Removing the stop-words
-	stop_words = stopwords.words('english')
-	stopped_words = [word for word in cleaned_words if not word in stop_words]
-		
-	porter = PorterStemmer()
-	stemmed_words = [porter.stem(word) for word in stopped_words]
-	stemmed_words.sort()
-	
-	return json.dumps(stemmed_words)
-
-# Query page
-@app.route("/queryd",methods = ["GET"])
-
 def queryd():
 	query_string = request.args.get('query')
 	token_words = nltk.word_tokenize(query_string)
@@ -83,7 +63,7 @@ def queryd():
 	porter = PorterStemmer()
 	stemmed_words = [porter.stem(word) for word in stopped_words]
 	stemmed_words.sort()
-	data_repository = json.load(open('strings.json'))
+	data_repository = json.load(open('data_repository.json'))
 	
 	if(("show" in stemmed_words or "what" in stemmed_words) and "schedul" in stemmed_words):
 		for key_parameter in stemmed_words:
