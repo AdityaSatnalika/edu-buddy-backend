@@ -76,7 +76,7 @@ def queryd():
 				if(key_parameter == "now" or key_parameter == "today"):
 					milliseconds = str(int(round(time.time() * 1000) + 5.5 * 3600 * 1000))
 
-					data_repository["show"]["schedul"][key_parameter]["time"] = milliseconds
+					data_repository["show"]["schedul"][key_parameter]["data_2"] = milliseconds
 					return json.dumps(data_repository["show"]["schedul"][key_parameter])
 				
 				# Get time for 'tomorrow'
@@ -93,12 +93,12 @@ def queryd():
 					tomorrow_time = now_time.replace(hour=0, minute=0, second=0, microsecond=0)
 					milliseconds = str(int((tomorrow_time - epoch).total_seconds() * 1000))
 					
-					data_repository["show"]["schedul"][key_parameter]["time"] = milliseconds
+					data_repository["show"]["schedul"][key_parameter]["data_2"] = milliseconds
 					return json.dumps(data_repository["show"]["schedul"][key_parameter])
 			except:
 				fail = 1
 		
-		data_repository["show"]["schedul"]["today"]["time"] = milliseconds
+		data_repository["show"]["schedul"]["today"]["data_2"] = milliseconds
 		return json.dumps(data_repository["show"]["schedul"]["today"])
 		
 	elif("add" in stemmed_words and ("reminder" or "event" in stemmed_words)):

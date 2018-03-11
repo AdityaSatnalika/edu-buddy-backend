@@ -3,24 +3,24 @@
 		"schedul": {
 			"today": {
 				"intent": "showTimeline",
-				"type": "today",
-				"time": ""
+				"data_1": "today",
+				"data_2": ""
 			},
 			"tomorrow": {
 				"intent": "showTimeline",
-				"type": "tommorow",
+				"data_1": "tommorow",
 				"time": ""
 			},
 			"now": {
 				"intent": "showTimeline",
-				"type": "now",
-				"time": ""
+				"data_1": "now",
+				"data_2": ""
 			}
 		}
 	},
 	"add": {
 		"intent": "addEvent",
-		"type": "now",
-		"time": "0"
+		"data_1": "now",
+		"data_2": "0"
 	}
 }
