@@ -1,5 +1,6 @@
 {"show": {
-    "schedul": {
+    "schedul": [
+      {
       "today": [
         {"intent": "showTimeline"},
         {"type": "today"}
@@ -12,6 +13,6 @@
         {"intent": "showTimeline"},
         {"type": "now"}
       ]
-    }
+    }]
   }
 }
