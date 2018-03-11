@@ -1,21 +1,21 @@
-{"show": {
-    "schedul": [
-      {
-      "today": [
-        {"intent": "showTimeline"},
-        {"type": "today"},
-        {"time":""}
-      ],
-      "tommorow": [
-        {"intent": "showTimeline"},
-        {"type": "tommorow"},
-        {"time":""}
-      ],
-      "now": [
-        {"intent": "showTimeline"},
-        {"type": "now"},
-        {"time":""}
-      ]
-    }]
-  }
+{
+	"show": {
+		"schedul": {
+			"today": {
+				"intent": "showTimeline",
+				"type": "today",
+				"time": ""
+			},
+			"tomorrow": {
+				"intent": "showTimeline",
+				"type": "tommorow",
+				"time": ""
+			},
+			"now": {
+				"intent": "showTimeline",
+				"type": "now",
+				"time": ""
+			}
+		}
+	}
 }

@@ -8,6 +8,8 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import requests
+import time
+from datetime import datetime, timedelta
 
 # Flask object creation
 app = Flask(__name__)
@@ -64,7 +66,7 @@ def query():
 	
 	return json.dumps(stemmed_words)
 
-# Query to Database page
+# Query page
 @app.route("/queryd",methods = ["GET"])
 
 def queryd():
@@ -81,12 +83,31 @@ def queryd():
 	porter = PorterStemmer()
 	stemmed_words = [porter.stem(word) for word in stopped_words]
 	stemmed_words.sort()
-	data = json.load(open('strings.json'))
-	if("show" in stemmed_words):
-		return json.dumps(data['show'])
-	else:
-		return json.dumps(data)
+	data_repository = json.load(open('strings.json'))
 	
+	if(("show" in stemmed_words or "what" in stemmed_words) and "schedul" in stemmed_words):
+		for key_parameter in stemmed_words:
+			# The time needs to be adjusted for the UTC standard
+			try:
+				if(key_parameter == "now" or key_parameter == "today"):
+					milliseconds = str(int(round(time.time() * 1000) + 5.5 * 3600 * 1000))
+				
+				# The time is adjusted to get the time for the next day's 12:00 AM
+				elif(key_parameter == "tomorrow"):
+					epoch = datetime.utcfromtimestamp(0)
+					now_time = datetime.now() + timedelta(days=1)
+					tomorrow_time = now_time.replace(hour=0, minute=0, second=0, microsecond=0)
+					milliseconds = str(int((tomorrow_time - epoch).total_seconds() * 1000))
+					
+				data_repository["show"]["schedul"][key_parameter]["time"] = milliseconds
+				return json.dumps(data_repository["show"]["schedul"][key_parameter])
+			except:
+				fail = 1
+		else:
+			return_value = {"message":"There has been an error processsing the query."}
+			json_string = json.dumps(return_value)
+			return json_string
+
 # Database page
 @app.route("/data",methods = ["GET"])
 
