@@ -1,9 +1,0 @@
-{"show": {
-    "schedule": {
-      "tommorow": [
-        {"intent": "Show-Timeline"},
-        {"type": "tommorow"}
-      ]
-    }
-  }
-}
