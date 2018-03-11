@@ -74,9 +74,8 @@ def data():
         
         values  = users.val()
 
-        return values
+        return "Anshul is Great"
 
-        #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 # Help page
 
