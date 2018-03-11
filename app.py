@@ -69,10 +69,10 @@ def api():
 @app.route("/data",methods = ['POST', 'GET'])
 
 def data():
-        return "Anshul is Great"
+        
 
         users = db.child("users").get()
-        
+        return "Anshul is Great"
         values  = users.val()
 
         return "Anshul is Great"
