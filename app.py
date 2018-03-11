@@ -7,6 +7,7 @@ import pyrebase
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+import requests
 
 # Flask object creation
 app = Flask(__name__)
@@ -81,11 +82,10 @@ def queryd():
 	stemmed_words = [porter.stem(word) for word in stopped_words]
 	stemmed_words.sort()
 	data = json.load(open('strings.json'))
-	if("show" in stemmed_word) 
-                return json.dumps(data['show'])
-        else
-                return json.dumps(data)
-	
+	if("show" in stemmed_words):
+		return json.dumps(data['show'])
+	else:
+		return json.dumps(data)
 	
 # Database page
 @app.route("/data",methods = ["GET"])
