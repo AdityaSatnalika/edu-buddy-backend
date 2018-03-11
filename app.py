@@ -6,6 +6,7 @@ import json
 import pyrebase
 import nltk
 from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
 
 # Flask object creation
 app = Flask(__name__)
@@ -43,9 +44,12 @@ def query():
 	
 	# Removing the stop-words
 	stop_words = stopwords.words('english')
-	print(stop_words)
+	stopped_words = [word for word in cleaned_words if not word in stop_words]
+		
+	porter = PorterStemmer()
+	stemmed_words = [porter.stem(word) for word in stopped_words]
 	
-	return json.dumps(cleaned_words)
+	return json.dumps(stemmed_words)
 	
 # Database page
 @app.route("/data",methods = ["GET"])
