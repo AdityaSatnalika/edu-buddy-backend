@@ -1,0 +1,9 @@
+{"schedul": {
+    "show": {
+      "today": [
+        {"intent": "showTimeline"},
+        {"type": "today"}
+      ]
+    }
+  }
+}
