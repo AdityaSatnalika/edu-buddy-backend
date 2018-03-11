@@ -108,7 +108,10 @@ def queryd():
 		url = ('https://newsapi.org/v2/top-headlines?country=in&apiKey=dfc5903247a14791b9db4a0dd940f0cf')
 		response = requests.get(url)
 		response = response.json()
-		return json.dumps(response)
+		
+		data_repository["news"]["data_1"] = response["articles"][0]["title"]
+		data_repository["news"]["data_2"] = response["articles"][0]["description"]
+		return json.dumps(data_repository["news"])
 		
 	else:
 		return json.dumps(data_repository["error"])
@@ -192,10 +195,7 @@ def user_details():
 @app.errorhandler(404)
 
 def page_not_found(e):
-	return_value = {"message":"No such avaiable command. Refer to the /help for more information."}
-	json_string = json.dumps(return_value)
-
-	return json_string, 404
+	return json.dumps(data_repository["error"]), 404
 
 if __name__ == "__main__":
 	app.debug = True
