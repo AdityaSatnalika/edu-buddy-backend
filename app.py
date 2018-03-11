@@ -57,11 +57,11 @@ def index():
 
 def api():
 
-        json_string = "Anshul is great"+request.args.get('q')
+    json_string = "Anshul is great"+request.args.get('q')
 
-        return json_string
+    return json_string
 
-        #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
+    #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 
 # Database page
