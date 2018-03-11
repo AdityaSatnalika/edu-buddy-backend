@@ -33,6 +33,7 @@ config = {
 firebase = pyrebase.initialize_app(config)
 
 auth = firebase.auth()
+db = firebase.database()
 
 
 
@@ -63,6 +64,18 @@ def api():
         #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 
+# Database page
+
+@app.route("/data",methods = ['POST', 'GET'])
+
+def data():
+
+        users = db.child("users").get()
+        
+        json_string = json.dumps(users.val())
+
+	return json_string
+        #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 # Help page
 
