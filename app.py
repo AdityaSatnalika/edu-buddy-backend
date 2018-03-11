@@ -130,8 +130,8 @@ def courses():
 		list_data.append(str(data[i])[73:-5])
 	list_url = []
  
-    for link in soup.findAll('a', class_="rc-OfferingCard nostyle",limit=10):
-        list_url.append(link.get('href'))
+        for link in soup.findAll('a', class_="rc-OfferingCard nostyle",limit=10):
+                list_url.append(link.get('href'))
 
     
 
