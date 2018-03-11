@@ -1,9 +1,18 @@
-{"schedul": {
-    "show": {
+{"show": {
+    "schedul": [
+      {
       "today": [
         {"intent": "showTimeline"},
         {"type": "today"}
+      ],
+      "tommorow": [
+        {"intent": "showTimeline"},
+        {"type": "tommorow"}
+      ],
+      "now": [
+        {"intent": "showTimeline"},
+        {"type": "now"}
       ]
-    }
+    }]
   }
 }

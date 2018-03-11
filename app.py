@@ -62,10 +62,30 @@ def query():
 	stemmed_words = [porter.stem(word) for word in stopped_words]
 	stemmed_words.sort()
 	
-	response = requests.get('https://raw.githubusercontent.com/Dheeraj1998/edu-buddy-backend/master/strings.json')
-	data_repository = response.text
+	return json.dumps(stemmed_words)
+
+# Query to Database page
+@app.route("/queryd",methods = ["GET"])
+
+def queryd():
+	query_string = request.args.get('query')
+	token_words = nltk.word_tokenize(query_string)
 	
-	return str(data_repository)
+	# Keeping only alphabetical words (removing punctuations)
+	cleaned_words = [word for word in token_words if word.isalpha()]
+	
+	# Removing the stop-words
+	stop_words = stopwords.words('english')
+	stopped_words = [word for word in cleaned_words if not word in stop_words]
+		
+	porter = PorterStemmer()
+	stemmed_words = [porter.stem(word) for word in stopped_words]
+	stemmed_words.sort()
+	data = json.load(open('strings.json'))
+	if("show" in stemmed_word) 
+                return json.dumps(data['show'])
+        else
+                return json.dumps(data)
 	
 # Database page
 @app.route("/data",methods = ["GET"])
