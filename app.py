@@ -7,6 +7,7 @@ import pyrebase
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+import requests
 
 # Flask object creation
 app = Flask(__name__)
@@ -61,7 +62,10 @@ def query():
 	stemmed_words = [porter.stem(word) for word in stopped_words]
 	stemmed_words.sort()
 	
-	return json.dumps(stemmed_words)
+	response = requests.get('https://raw.githubusercontent.com/Dheeraj1998/edu-buddy-backend/master/strings.json')
+	data_repository = response.text
+	
+	return str(data_repository)
 	
 # Database page
 @app.route("/data",methods = ["GET"])
