@@ -61,8 +61,6 @@ def query():
 	stemmed_words = [porter.stem(word) for word in stopped_words]
 	stemmed_words.sort()
 	
-	data_repository = 
-	
 	return json.dumps(stemmed_words)
 	
 # Database page
