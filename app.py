@@ -129,7 +129,8 @@ def courses():
 	for i in range(10):
 		list_data.append(str(data[i])[73:-5])
 	
-	return json.dumps(list_data)
+	courses = {"courses": list_data}
+	return json.dumps(courses)
 
 # Database page
 @app.route("/data",methods = ["GET"])
