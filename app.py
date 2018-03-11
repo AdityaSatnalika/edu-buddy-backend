@@ -72,9 +72,8 @@ def data():
 
         users = db.child("users").get()
         
-        json_string = json.dumps(users.val())
+        return users
 
-	return json_string
         #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
 
 # Help page
