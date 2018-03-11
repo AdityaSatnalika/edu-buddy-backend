@@ -10,6 +10,7 @@ from nltk.stem.porter import PorterStemmer
 import requests
 import time
 from datetime import datetime, timedelta
+from autocorrect import spell
 
 # Flask object creation
 app = Flask(__name__)
@@ -35,17 +36,6 @@ def index():
 	json_string = json.dumps(return_value)
 	return json_string
 
-# API page
-@app.route("/api",methods = ['POST', 'GET'])
-
-def api():
-
-    json_string = "Anshul is great"+request.args.get('q')
-
-    return json_string
-
-    #return HttpResponse('<pre>' + r.text + 'Anshul is great </pre>'+full_url+" get try "+request.GET['q'])
-
 # Query page
 @app.route("/query",methods = ["GET"])
 
@@ -55,6 +45,9 @@ def queryd():
 	
 	# Keeping only alphabetical words (removing punctuations)
 	cleaned_words = [word for word in token_words if word.isalpha()]
+	
+	# Spell checking for the words
+	cleaned_words = [spell(word) for word in cleaned_words]
 	
 	# Removing the stop-words
 	stop_words = stopwords.words('english')
@@ -68,6 +61,7 @@ def queryd():
 	# Decision making for viewing the schedule
 	if(("show" in stemmed_words or "what" in cleaned_words or "view" in cleaned_words or "enlist" in cleaned_words) and "schedul" in stemmed_words):
 		# Checking if the 'after' keyword is present
+		after_keyword = 0
 		if ("after" in token_words):
 			after_keyword = 1
 		
@@ -89,11 +83,12 @@ def queryd():
 					# The time is adjusted to get the time for the next day's 12:00 AM
 					epoch = datetime.utcfromtimestamp(0)
 					
+					# Add a time of one day to the calculation
 					if (after_keyword == 1):
-						now_time = datetime.now() + timedelta(days=2)
+						now_time = datetime.now() + timedelta(days = 2)
 					else:
-						now_time = datetime.now() + timedelta(days=1)
-					
+						now_time = datetime.now() + timedelta(days = 1)
+						
 					tomorrow_time = now_time.replace(hour=0, minute=0, second=0, microsecond=0)
 					milliseconds = str(int((tomorrow_time - epoch).total_seconds() * 1000))
 					
