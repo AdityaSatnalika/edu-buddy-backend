@@ -3,15 +3,18 @@
       {
       "today": [
         {"intent": "showTimeline"},
-        {"type": "today"}
+        {"type": "today"},
+        {"time":""}
       ],
       "tommorow": [
         {"intent": "showTimeline"},
-        {"type": "tommorow"}
+        {"type": "tommorow"},
+        {"time":""}
       ],
       "now": [
         {"intent": "showTimeline"},
-        {"type": "now"}
+        {"type": "now"},
+        {"time":""}
       ]
     }]
   }
