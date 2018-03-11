@@ -82,7 +82,7 @@ def queryd():
 	stemmed_words = [porter.stem(word) for word in stopped_words]
 	stemmed_words.sort()
 	data = json.load(open('strings.json'))
-	if("show" in stemmed_word) 
+	if("show" in stemmed_word):
                 return json.dumps(data['show'])
         else
                 return json.dumps(data)
