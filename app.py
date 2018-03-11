@@ -130,12 +130,10 @@ def courses():
 		list_data.append(str(data[i])[73:-5])
 	list_url = []
  
-        for link in soup.findAll('a', class_="rc-OfferingCard nostyle",limit=10):
-                list_url.append(link.get('href'))
-
-    
-
-	courses = {"courses": list_data,"url":list_url}
+	for link in soup.findAll('a', class_="rc-OfferingCard nostyle",limit=10):
+		list_url.append('https://www.coursera.org' + link.get('href'))
+		
+	courses = {"courses": {"names" : list_data, "url" : list_url}}
 	return json.dumps(courses)
 
 # Database page
